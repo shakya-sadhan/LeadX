@@ -1,0 +1,145 @@
+/**
+ * HowItWorksParallax.css
+ * 
+ * Styles for the parallax scroll component with GPU optimizations
+ * and accessibility support for reduced motion preferences.
+ */
+
+/* Main container with sticky positioning */
+.how-it-works-parallax-container {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh + 400px);
+  overflow: hidden;
+}
+
+/* Sticky wrapper for the cards */
+.how-it-works-parallax-sticky {
+  position: sticky;
+  top: 8vh;
+  height: calc(100vh - 8vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  z-index: 10;
+}
+
+/* Individual card wrapper with GPU optimizations */
+.how-it-works-parallax-card {
+  width: 100%;
+  max-width: 800px;
+  /* GPU optimization for smooth animations */
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Ensure smooth rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Preserve original card styling */
+.how-it-works-parallax-card .how-card {
+  /* Ensure the original card maintains its styling */
+  width: 100%;
+  height: auto;
+  /* GPU optimization inherited from parent */
+  will-change: inherit;
+  transform: inherit;
+  backface-visibility: inherit;
+  -webkit-backface-visibility: inherit;
+}
+
+/* Performance optimizations for smooth scrolling */
+.how-it-works-parallax-container * {
+  /* Force hardware acceleration for all child elements */
+  transform: translateZ(0);
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .how-it-works-parallax-container {
+    /* Disable sticky positioning for reduced motion */
+    position: static;
+    min-height: auto;
+  }
+  
+  .how-it-works-parallax-sticky {
+    /* Convert to normal flow for reduced motion */
+    position: static;
+    height: auto;
+    top: auto;
+  }
+  
+  .how-it-works-parallax-card {
+    /* Disable GPU optimizations for reduced motion */
+    will-change: auto;
+    transform: none;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+  
+  .how-it-works-parallax-card .how-card {
+    /* Reset transforms for reduced motion */
+    will-change: auto;
+    transform: none;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .how-it-works-parallax-sticky {
+    top: 6vh;
+    height: calc(100vh - 6vh);
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .how-it-works-parallax-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .how-it-works-parallax-sticky {
+    top: 4vh;
+    height: calc(100vh - 4vh);
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .how-it-works-parallax-card {
+    /* Enhanced rendering for high DPI displays */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Print styles - disable animations */
+@media print {
+  .how-it-works-parallax-container {
+    position: static;
+    min-height: auto;
+  }
+  
+  .how-it-works-parallax-sticky {
+    position: static;
+    height: auto;
+    top: auto;
+  }
+  
+  .how-it-works-parallax-card {
+    will-change: auto;
+    transform: none;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+}

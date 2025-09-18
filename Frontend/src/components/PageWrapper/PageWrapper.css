@@ -1,0 +1,65 @@
+/* Page Wrapper - Clean Design */
+.page-wrapper {
+  min-height: 100vh;
+  position: relative;
+  background: #F5F5F5;
+  border-radius: 20px;
+  margin: 2px;
+  overflow: hidden;
+}
+
+/* When sidebar is hidden, remove margins and border-radius for full width */
+.main-content.sidebar-hidden .page-wrapper {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Page Content */
+.page-content {
+  position: relative;
+  padding: 4px 4px 4px 0;
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* When sidebar is hidden, remove padding for full width */
+.main-content.sidebar-hidden .page-content {
+  padding: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Content Cards - Clean Design */
+.content-card {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 2px 2px 2px 0;
+  }
+  
+  .content-card {
+    padding: 20px;
+    margin: 15px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content {
+    padding: 1px 1px 1px 0;
+  }
+  
+  .content-card {
+    padding: 15px;
+    margin: 10px 0;
+  }
+}

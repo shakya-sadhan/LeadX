@@ -1,0 +1,89 @@
+/* Dashboard specific styles */
+.dashboard-container {
+  min-height: 100vh;
+  background-color: hsl(var(--background));
+}
+
+/* Ensure proper spacing and layout */
+.dashboard-main {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar toggle animation */
+.sidebar-transition {
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* Content area adjustments */
+.dashboard-content {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+}
+
+/* Force content to use full width */
+.dashboard-main {
+  width: 100%;
+  max-width: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure all content components use full width */
+.dashboard-content {
+  width: 100%;
+  max-width: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-content > * {
+  width: 100%;
+  max-width: none;
+  flex: 1;
+}
+
+/* Force full width for all elements */
+.dashboard-content * {
+  box-sizing: border-box;
+}
+
+/* Remove any potential width constraints */
+.dashboard-content .p-6 {
+  width: 100% !important;
+  max-width: none !important;
+  flex: 1;
+}
+
+.dashboard-content .bg-card {
+  width: 100% !important;
+  max-width: none !important;
+  flex: 1;
+}
+
+/* Ensure proper z-index for modals and overlays */
+.dashboard-modal {
+  z-index: 1000;
+}
+
+/* Custom scrollbar for dashboard */
+.dashboard-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dashboard-scroll::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+.dashboard-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 3px;
+}
+
+.dashboard-scroll::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--foreground));
+}
