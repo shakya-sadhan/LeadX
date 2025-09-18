@@ -9,6 +9,7 @@ from app.api.v1.auth import router as authentication_router
 from app.api.v1.user import router as user_router
 from app.api.v1.authorization import router as authorization_router
 from app.api.v1.lead import router as lead_router
+from app.api.v1.Oauth import router as oauth_router
 
 # @asynccontextmanager
 # async def lifespan(app: FastAPI):
@@ -38,3 +39,4 @@ app.include_router(authentication_router)
 app.include_router(user_router)
 app.include_router(authorization_router)
 app.include_router(lead_router)
+app.include_router(oauth_router)

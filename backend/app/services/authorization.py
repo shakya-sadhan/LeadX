@@ -22,7 +22,7 @@ class RoleService:
     async def list_roles(self, skip: int = 0, limit: int = 100) -> List[Role]:
         result = await self.session.exec(
             select(Role)
-            .options(selectinload(Role.permissions))  # preload permissions
+            .options(selectinload(Role.permissions))
             .offset(skip)
             .limit(limit)
         )

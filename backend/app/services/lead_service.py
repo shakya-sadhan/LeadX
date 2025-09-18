@@ -49,39 +49,33 @@ chat_memory = {}
 
 
 async def chat(user_id: str, message: str = None, action: str = None, db: AsyncSession = Depends(get_session)):
-    # Initialize new user flow
     if user_id not in chat_memory:
         chat_memory[user_id] = {"step": 1}
 
     mem = chat_memory[user_id]
     step = mem["step"]
 
-    # Step 1 → Ask for type of clients
     if step == 1:
         mem["step"] = 2
         print(f"[User {user_id}] asked: {message}")
         return {"bot": "What type of clients are you looking for?"}
 
-    # Step 2 → Store clients, ask for industry
     if step == 2:
         mem["clients"] = message
         mem["step"] = 3
         print(f"[User {user_id}] answered clients: {message}")
         return {"bot": "Got it! What industry are you targeting?"}
 
-    # Step 3 → Store industry, ask for location
     if step == 3:
         mem["industry"] = message
         mem["step"] = 4
         print(f"[User {user_id}] answered industry: {message}")
         return {"bot": "Great! What location do you prefer?"}
 
-    # Step 4 → Generate lead preview using Gemini
     if step == 4:
         mem["location"] = message
         return await generate_preview(mem)
 
-    # Step 5 → Save leads to database
     if step == 5 and action == "save":
         return await save_leads(mem, db)
     return {"bot": "Step not implemented yet."}
@@ -91,7 +85,6 @@ async def generate_preview(mem: dict):
     """
     Generates lead preview using Gemini API and returns a table with more fields.
     """
-    # Generate leads using LangChain and Gemini
     chain = lead_prompt | llm
     result = chain.invoke({
         "clients": mem["clients"],
@@ -100,10 +93,7 @@ async def generate_preview(mem: dict):
         "limit": 5
     })
 
-    # Log the raw response for debugging
-    print(f"[Gemini Response] {result.content}")  # Log the raw response
 
-    # Clean up and parse the result
     try:
         cleaned_content = result.content.strip().replace("```json", "").replace("```", "")
         print(f"[Cleaned Content] {cleaned_content}")

@@ -11,6 +11,9 @@ class Settings(BaseSettings):
     DATABASE_URL: str
     GEMINI_API_KEY: str
     GEMINI_MODEL: str
+    GOOGLE_CLIENT_ID: str
+    GOOGLE_CLIENT_SECRET: str
+    GOOGLE_REDIRECT_URI: str
 
 
     model_config = SettingsConfigDict(
