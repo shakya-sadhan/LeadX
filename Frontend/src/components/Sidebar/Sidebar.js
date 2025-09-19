@@ -230,31 +230,34 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Add Button */}
-      <div className="add-section">
-        <button className="add-button" onClick={handleAddClick}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"/>
-            <line x1="5" y1="12" x2="19" y2="12"/>
-          </svg>
-        </button>
-      </div>
-
-      {/* Navigation */}
-      <nav className="sidebar-nav">
-        {menuItems.map((item) => (
-          <button
-            key={item.id}
-            className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
-            onClick={() => handleNavigation(item.path)}
-          >
-            <div className="nav-icon-container">
-              <span className="nav-icon">{item.icon}</span>
-            </div>
-            <span className="nav-label">{item.label}</span>
+      {/* Middle Content */}
+      <div className="sidebar-middle">
+        {/* Add Button */}
+        <div className="add-section">
+          <button className="add-button" onClick={handleAddClick}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
           </button>
-        ))}
-      </nav>
+        </div>
+
+        {/* Navigation */}
+        <nav className="sidebar-nav">
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
+              onClick={() => handleNavigation(item.path)}
+            >
+              <div className="nav-icon-container">
+                <span className="nav-icon">{item.icon}</span>
+              </div>
+              <span className="nav-label">{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </div>
 
       {/* Sign In/User Section */}
       <div className="signin-section">
