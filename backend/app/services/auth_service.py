@@ -1,41 +1,87 @@
 from fastapi import HTTPException, status
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlmodel import select
+from typing import Optional
 from datetime import datetime, timedelta, timezone
 from app.models.users import User
+from app.models.authorization import Role
 from app.models.refresh_token import RefreshToken
 from app.core.security import hash_password, verify_password
 from app.utils.jwt import create_refresh_token
+from sqlalchemy.orm import selectinload
+from app.schemas.users import UserRead
 
 
 class AuthService:
     def __init__(self, session: AsyncSession):
         self.session = session
 
-    async def register_user(self, username: str, email: str, password: str | None) -> User:
-        # Duplicate check
+    async def register_user(
+        self,
+        username: str,
+        email: str,
+        password: Optional[str] = None,
+        google_sub: Optional[str] = None,
+        profile_pic: Optional[str] = None
+    ) -> UserRead:
+        # Check if user exists
         existing = await self.session.exec(
             select(User).where((User.email == email) | (User.username == username))
         )
         if existing.one_or_none():
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Username or email already registered",
+                detail="Username or email already registered"
             )
 
-        # Handle optional password (OAuth users may not have one)
-        password_hash = hash_password(password) if password else None
+        # Require password if not OAuth
+        if not password and not google_sub:
+            raise HTTPException(status_code=400, detail="Password is required")
 
-        user = User(username=username, email=email, password_hash=password_hash)
+        # Fetch default role with permissions
+        default_role_result = await self.session.exec(
+            select(Role).options(selectinload(Role.permissions)).where(Role.name == "user")
+        )
+        default_role = default_role_result.one_or_none()
+        if not default_role:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Default role not found"
+            )
+
+        # Create user
+        user = User(
+            username=username,
+            email=email,
+            password_hash=hash_password(password) if password else None,
+            roles=[default_role],
+            google_sub=google_sub,
+            profile_pic=profile_pic,
+        )
+
         try:
             self.session.add(user)
             await self.session.commit()
             await self.session.refresh(user)
-        except Exception:
-            await self.session.rollback()
-            raise HTTPException(status_code=500, detail="DB Error: cannot register user")
-        return user
 
+            # Load roles & permissions relationship
+            result = await self.session.exec(
+                select(User)
+                .options(selectinload(User.roles).selectinload(Role.permissions))
+                .where(User.id == user.id)
+            )
+            user = result.one()
+        except Exception as e:
+            await self.session.rollback()
+            raise HTTPException(
+                status_code=500,
+                detail=f"DB Error: cannot register user ({e})"
+            )
+
+        # Return validated Pydantic model
+        return UserRead.model_validate(user)
+
+    
     async def authenticate_user(self, email: str, password: str) -> User | None:
         result = await self.session.exec(select(User).where(User.email == email))
         user = result.one_or_none()

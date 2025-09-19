@@ -2,6 +2,7 @@ from pydantic import BaseModel, EmailStr, StringConstraints
 from typing import Annotated, List, Optional
 import uuid
 from datetime import datetime
+from app.schemas.authorization import RoleRead
 
 # Reusable types
 PasswordStr = Annotated[str, StringConstraints(min_length=8, max_length=128)]
@@ -49,7 +50,7 @@ class UserRead(UserBase):
     id: uuid.UUID
     created_at: datetime
     updated_at: datetime
-    roles: List[str]
+    roles: List[RoleRead]
     profile_pic: Optional[str] = None
     google_sub: Optional[str] = None
 

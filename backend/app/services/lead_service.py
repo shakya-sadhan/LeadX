@@ -48,7 +48,7 @@ lead_prompt = ChatPromptTemplate.from_template(
 chat_memory = {}
 
 
-async def chat(user_id: str, message: str = None, action: str = None, db: AsyncSession = Depends(get_session)):
+async def chat(user_id: str, message: str = None, db: AsyncSession = Depends(get_session)):
     if user_id not in chat_memory:
         chat_memory[user_id] = {"step": 1}
 
@@ -76,7 +76,7 @@ async def chat(user_id: str, message: str = None, action: str = None, db: AsyncS
         mem["location"] = message
         return await generate_preview(mem)
 
-    if step == 5 and action == "save":
+    if step == 5:
         return await save_leads(mem, db)
     return {"bot": "Step not implemented yet."}
 
@@ -124,7 +124,6 @@ async def generate_preview(mem: dict):
     return {
         "bot": "Here’s a preview of leads I found:",
         "table": table,
-        "button": {"label": "Continue", "action": "save"}
     }
 
 async def save_leads(mem: dict, db: AsyncSession):

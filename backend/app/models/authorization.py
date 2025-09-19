@@ -46,4 +46,4 @@ class Permission(SQLModel, table=True):
 
 
 Role.model_rebuild()
-Permission.model_rebuild()
+Permission.model_rebuild() 

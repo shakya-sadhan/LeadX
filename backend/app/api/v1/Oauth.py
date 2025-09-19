@@ -30,13 +30,13 @@ def google_login():
 async def google_callback(request: Request, session: AsyncSession = Depends(get_session)):
     """
     Handle OAuth callback from Google.
-    If user exists → log them in, else → register new account.
+    If user exists → log them in, else → register new account with default role.
     """
     code = request.query_params.get("code")
     if not code:
         raise HTTPException(status_code=400, detail="Authorization code not found")
 
-    # 1. Get Google user info
+    # 1️⃣ Get Google user info
     userinfo = await oauth_service.exchange_code_for_userinfo(
         code=code,
         client_id=settings.GOOGLE_CLIENT_ID,
@@ -52,47 +52,42 @@ async def google_callback(request: Request, session: AsyncSession = Depends(get_
     if not email:
         raise HTTPException(status_code=400, detail="Google did not return an email")
 
-    # 2. Check if user exists
+    # 2️⃣ Check if user exists by google_sub
     result = await session.exec(select(User).where(User.google_sub == google_sub))
     user = result.one_or_none()
 
+    auth_service = AuthService(session)
+
     if not user:
-        # Fallback: check by email
+        # 2a. Fallback: check by email
         result = await session.exec(select(User).where(User.email == email))
         user = result.one_or_none()
 
         if user:
+            # Attach google_sub and picture if user exists
             user.google_sub = google_sub
             user.profile_pic = picture
         else:
-            user = User(
+            # 2b. Register new user via OAuth with default role
+            user = await auth_service.register_user(
                 username=name or email.split("@")[0],
                 email=email,
-                google_sub=google_sub,
+                password=None,  # No password for OAuth 
                 profile_pic=picture,
-                is_active=True,
+                google_sub=google_sub
             )
-            session.add(user)
 
-        try:
+    else:
+        # Optional: update profile picture if changed
+        if picture and user.profile_pic != picture:
+            user.profile_pic = picture
+            session.add(user)
             await session.commit()
             await session.refresh(user)
-        except Exception:
-            await session.rollback()
-            raise HTTPException(status_code=500, detail="DB error during OAuth")
 
-    # 3. Generate tokens
-    auth = AuthService(session)
+    # 3️⃣ Generate tokens
     access_token = create_access_token(user.id)
-    refresh_token = await auth.create_and_store_refresh_token(user, revoke_old=False)
-
-    # 4. Redirect to frontend or return JSON
-    if settings.FRONTEND_REDIRECT_URI:
-        redirect_url = (
-            f"{settings.FRONTEND_REDIRECT_URI}"
-            f"?access_token={access_token}&refresh_token={refresh_token}"
-        )
-        return RedirectResponse(url=redirect_url)
+    refresh_token = await auth_service.create_and_store_refresh_token(user, revoke_old=False)
 
     return JSONResponse(
         {

@@ -6,72 +6,73 @@ from fastapi import HTTPException
 from sqlalchemy.orm import selectinload
 from app.models.users import User
 from app.models.authorization import Role
-from app.schemas.users import UserCreate, UserUpdate
+from app.schemas.users import UserCreate, UserUpdate, UserRead
 from app.core.security import hash_password
+
 
 class UserService:
     def __init__(self, session: AsyncSession):
         self.session = session
 
-    async def list_users(self) -> list[dict]:
-        result = await self.session.exec(
-            select(User).options(selectinload(User.roles))
-        )
-        users = result.all()
-
-        users_list = []
-        for u in users:
-            user_dict = u.model_dump()
-            user_dict["roles"] = [r.name for r in u.roles]
-            users_list.append(user_dict)
-        return users_list
-
-    async def get_user(self, user_id: uuid.UUID) -> dict:
+    async def list_users(self) -> list[UserRead]:
         result = await self.session.exec(
             select(User)
-            .options(selectinload(User.roles))
+            .options(
+                selectinload(User.roles).selectinload(Role.permissions)
+            )
+        )
+        users = result.all()
+        return [UserRead.model_validate(u, from_attributes=True) for u in users]
+
+    async def get_user(self, user_id: uuid.UUID) -> UserRead:
+        result = await self.session.exec(
+            select(User)
             .where(User.id == user_id)
+            .options(
+                selectinload(User.roles).selectinload(Role.permissions)
+            )
         )
         user = result.one_or_none()
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
+        return UserRead.model_validate(user, from_attributes=True)
 
-        # convert to dict with role names
-        user_dict = user.model_dump()
-        user_dict["roles"] = [r.name for r in user.roles]
-        return user_dict
-    
-    
-    async def create_user(self, data: UserCreate) -> dict:
+    async def create_user(self, data: UserCreate) -> UserRead:
         user = User(
             username=data.username,
             email=data.email,
             password_hash=hash_password(data.password)
         )
 
-        # fetch roles
-        roles_result = await self.session.exec(select(Role).where(Role.id.in_(data.role_ids)))
-        user.roles = roles_result.all()  # already loaded
+        # assign roles
+        roles_result = await self.session.exec(
+            select(Role).where(Role.id.in_(data.role_ids))
+        )
+        user.roles = roles_result.all()
 
         self.session.add(user)
         await self.session.commit()
-        # reload user with roles eagerly loaded
+        await self.session.refresh(user)
+
+        # reload user with roles + permissions
         result = await self.session.exec(
-            select(User).where(User.id == user.id).options(selectinload(User.roles))
+            select(User)
+            .where(User.id == user.id)
+            .options(
+                selectinload(User.roles).selectinload(Role.permissions)
+            )
         )
         user = result.one()
 
-        # return dict with role names
-        user_dict = user.model_dump()
-        user_dict["roles"] = [r.name for r in user.roles]
-        return user_dict
+        return UserRead.model_validate(user, from_attributes=True)
 
-    async def update_user(self, user_id: uuid.UUID, data: UserUpdate) -> dict:
-        # Load user + roles eagerly
+    async def update_user(self, user_id: uuid.UUID, data: UserUpdate) -> UserRead:
         result = await self.session.exec(
             select(User)
             .where(User.id == user_id)
-            .options(selectinload(User.roles))
+            .options(
+                selectinload(User.roles).selectinload(Role.permissions)
+            )
         )
         user = result.one_or_none()
         if not user:
@@ -87,25 +88,21 @@ class UserService:
             user.is_active = data.is_active
 
         if data.role_ids is not None:
-            # fetch roles
             roles_result = await self.session.exec(
                 select(Role).where(Role.id.in_(data.role_ids))
             )
-            user.roles = roles_result.all()  # now it's already loaded, safe to assign
+            user.roles = roles_result.all()
 
         self.session.add(user)
         await self.session.commit()
         await self.session.refresh(user)
 
-        # Return as dict with role names
-        user_dict = user.model_dump()
-        user_dict["roles"] = [r.name for r in user.roles]
-        return user_dict
+        return UserRead.model_validate(user, from_attributes=True)
 
-    async def delete_user(self, user_id: uuid.UUID) -> bool:
+    async def delete_user(self, user_id: uuid.UUID) -> None:
         user = await self.session.get(User, user_id)
         if not user:
-            return False
+            raise HTTPException(status_code=404, detail="User not found")
+
         await self.session.delete(user)
         await self.session.commit()
-        return True
