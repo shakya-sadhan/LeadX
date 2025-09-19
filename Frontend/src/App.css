@@ -1,6 +1,6 @@
 .app {
   min-height: 100vh;
-  background: linear-gradient(135deg, #C6CACE 0%, #0B0C10 100%); /* Silver Gray to Jet Black gradient */
+  background: #ffffff; /* White background */
   color: #0B0C10; /* Jet Black text */
   transition: background-color 0.3s ease;
   display: flex;

@@ -144,7 +144,7 @@ export function LeadGeneration({
     );
   };
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       {/* Results Header - only show when there are staged leads */}
       {stagedLeads.length > 0 && (
         <div className="p-4 bg-card border-b border-border">
@@ -182,7 +182,7 @@ export function LeadGeneration({
         </div>
       )}
 
-      <div className="p-6">
+      <div className="flex-1 p-6 overflow-y-auto">
         {stagedLeads.length === 0 ? (
           <div className="max-w-3xl mx-auto space-y-8">
             <div className="text-center space-y-4">
@@ -364,9 +364,9 @@ export function LeadGeneration({
         )}
       </div>
 
-      {/* Search input */}
-      <div className="p-6 border-t border-border bg-card/50">
-        <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
+      {/* Search input - Fixed at bottom with no space */}
+      <div className="border-t border-border bg-card/50">
+        <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6">
           <div className="flex gap-3">
             <textarea
               value={prompt}

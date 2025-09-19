@@ -56,8 +56,8 @@
 }
 
 .search-bar:focus-within {
-  border-color: #2D5A5A;
-  box-shadow: 0 0 0 3px rgba(45, 90, 90, 0.1);
+  border-color: #327039; /* Forest Green focus */
+  box-shadow: 0 0 0 3px rgba(50, 112, 57, 0.1);
 }
 
 .search-input-container {
@@ -120,9 +120,9 @@
 }
 
 .search-submit-btn {
-  background: #2D5A5A;
+  background: #327039; /* Forest Green like the + button */
   border: none;
-  color: #000000;
+  color: #ffffff; /* White text */
   cursor: pointer;
   padding: 8px;
   border-radius: 8px;
@@ -133,7 +133,7 @@
 }
 
 .search-submit-btn:hover:not(:disabled) {
-  background: #1F4040;
+  background: #2a5d2a; /* Darker green on hover */
   transform: scale(1.05);
 }
 
@@ -159,7 +159,7 @@
   border: 1px solid #e9ecef;
   border-radius: 25px;
   font-size: 14px;
-  color: #2D5A5A;
+  color: #327039; /* Forest Green text */
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -171,11 +171,11 @@
 }
 
 .topic-button:hover {
-  background: #2D5A5A;
-  border-color: #2D5A5A;
-  color: #ffffff;
+  background: #327039; /* Forest Green background on hover */
+  border-color: #327039;
+  color: #ffffff; /* White text on hover */
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(45, 90, 90, 0.3);
+  box-shadow: 0 2px 8px rgba(50, 112, 57, 0.3);
 }
 
 .topic-icon {
@@ -223,17 +223,17 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2D5A5A 0%, #1F4040 100%);
+  background: linear-gradient(135deg, #327039 0%, #2a5d2a 100%); /* Forest Green gradient */
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(45, 90, 90, 0.3);
+  box-shadow: 0 2px 8px rgba(50, 112, 57, 0.3);
 }
 
 .message.user .message-avatar {
-  background: #6b7280;
+  background: #327039; /* Forest Green to match the message bubble */
 }
 
 .message-content {
@@ -259,9 +259,9 @@
 }
 
 .message.user .message-text {
-  background: #2D5A5A;
-  color: #000000;
-  border: 1px solid #1F4040;
+  background: #327039; /* Forest Green like the + button */
+  color: #ffffff; /* White text */
+  border: 1px solid #327039;
 }
 
 .message-time {
@@ -285,7 +285,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #2D5A5A;
+  background: #327039; /* Forest Green dots */
   animation: typing 1.4s infinite ease-in-out;
 }
 
@@ -334,8 +334,8 @@
 }
 
 .chat-input-bar:focus-within {
-  border-color: #2D5A5A;
-  box-shadow: 0 4px 16px rgba(45, 90, 90, 0.1);
+  border-color: #327039; /* Forest Green focus */
+  box-shadow: 0 4px 16px rgba(50, 112, 57, 0.1);
 }
 
 .chat-input {
@@ -354,9 +354,9 @@
 }
 
 .send-button {
-  background: #2D5A5A;
+  background: #327039; /* Forest Green like the + button */
   border: none;
-  color: #000000;
+  color: #ffffff; /* White text */
   padding: 12px;
   border-radius: 20px;
   cursor: pointer;
@@ -370,7 +370,7 @@
 }
 
 .send-button:hover:not(:disabled) {
-  background: #1F4040;
+  background: #2a5d2a; /* Darker green on hover */
   transform: scale(1.05);
 }
 
@@ -467,7 +467,7 @@
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  color: #2D5A5A;
+  color: #327039; /* Forest Green */
 }
 
 .close-suggestions {
@@ -507,7 +507,7 @@
 
 .suggestion-item:hover {
   background: #f3f4f6;
-  color: #2D5A5A;
+  color: #327039; /* Forest Green on hover */
 }
 
 .suggestion-item svg {
@@ -516,7 +516,7 @@
 }
 
 .suggestion-item:hover svg {
-  color: #2D5A5A;
+  color: #327039; /* Forest Green on hover */
 }
 
 /* Responsive Suggestions */
