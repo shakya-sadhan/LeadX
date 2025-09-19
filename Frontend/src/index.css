@@ -4,48 +4,50 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Evecta Color Palette - Light Theme */
+    --background: 0 0% 100%; /* White background */
+    --foreground: 0 0% 4%; /* Jet Black text */
+    --card: 0 0% 100%; /* White card background */
+    --card-foreground: 0 0% 4%;
+    --popover: 0 0% 100%; /* White popover background */
+    --popover-foreground: 0 0% 4%;
+    --primary: 120 25% 30%; /* Forest Green #327039 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 85% 65%; /* Golden Yellow #F0BE49 */
+    --secondary-foreground: 0 0% 4%;
+    --muted: 0 0% 80%; /* Silver Gray #C6CACE */
+    --muted-foreground: 0 0% 40%;
+    --accent: 15 70% 55%; /* Cherry Grove #DD5C36 */
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 80%; /* Silver Gray borders */
+    --input: 0 0% 80%;
+    --ring: 120 25% 30%; /* Forest Green focus ring */
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    /* Evecta Color Palette - Dark Theme */
+    --background: 0 0% 4%; /* Jet Black #0B0C10 */
+    --foreground: 0 0% 80%; /* Silver Gray text */
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 80%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 80%;
+    --primary: 120 25% 30%; /* Forest Green #327039 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 85% 65%; /* Golden Yellow #F0BE49 */
+    --secondary-foreground: 0 0% 4%;
+    --muted: 0 0% 20%; /* Dark neutral */
+    --muted-foreground: 0 0% 60%;
+    --accent: 15 70% 55%; /* Cherry Grove #DD5C36 */
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 120 25% 30%; /* Forest Green focus ring */
   }
 }
 
@@ -62,6 +64,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  background-color: #ffffff; /* White background */
 }
 
 html {
@@ -72,54 +75,7 @@ html {
   min-height: 100vh;
 }
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
-}
-
-/* Custom scrollbar */
+/* Custom scrollbar - Normal colors */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -137,7 +93,7 @@ html {
   background: #555;
 }
 
-/* Dark theme scrollbar */
+/* Dark theme scrollbar - Normal colors */
 .dark-theme ::-webkit-scrollbar-track {
   background: #2a2a2a;
 }
@@ -148,4 +104,145 @@ html {
 
 .dark-theme ::-webkit-scrollbar-thumb:hover {
   background: #777;
+}
+
+/* Evecta brand color utilities */
+.text-evecta-forest { color: #327039; }
+.text-evecta-golden { color: #F0BE49; }
+.text-evecta-cherry { color: #DD5C36; }
+.text-evecta-cyan { color: #00FFF7; }
+.text-evecta-jet { color: #0B0C10; }
+.text-evecta-silver { color: #C6CACE; }
+
+.bg-evecta-forest { background-color: #327039; }
+.bg-evecta-golden { background-color: #F0BE49; }
+.bg-evecta-cherry { background-color: #DD5C36; }
+.bg-evecta-cyan { background-color: #00FFF7; }
+.bg-evecta-jet { background-color: #0B0C10; }
+.bg-evecta-silver { background-color: #C6CACE; }
+
+.border-evecta-forest { border-color: #327039; }
+.border-evecta-golden { border-color: #F0BE49; }
+.border-evecta-cherry { border-color: #DD5C36; }
+.border-evecta-cyan { border-color: #00FFF7; }
+.border-evecta-jet { border-color: #0B0C10; }
+.border-evecta-silver { border-color: #C6CACE; }
+
+/* Hover effects with Evecta colors */
+.hover-evecta-golden:hover { color: #F0BE49; }
+.hover-evecta-forest:hover { color: #327039; }
+.hover-evecta-cherry:hover { color: #DD5C36; }
+
+.hover-bg-evecta-golden:hover { background-color: #F0BE49; }
+.hover-bg-evecta-forest:hover { background-color: #327039; }
+.hover-bg-evecta-cherry:hover { background-color: #DD5C36; }
+
+/* Active/click states with Cherry Grove */
+.active-evecta-cherry:active { color: #DD5C36; }
+.active-bg-evecta-cherry:active { background-color: #DD5C36; }
+
+/* Focus states with Forest Green */
+.focus-evecta-forest:focus { 
+  outline: 2px solid #327039;
+  outline-offset: 2px;
+}
+
+/* Electric Cyan glow effects */
+.glow-evecta-cyan {
+  box-shadow: 0 0 10px rgba(0, 255, 247, 0.3);
+  transition: all 0.3s ease;
+}
+
+.glow-evecta-cyan:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 247, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Trailing glow effect for modern tech feel */
+.trail-glow-evecta-cyan {
+  position: relative;
+  overflow: hidden;
+}
+
+.trail-glow-evecta-cyan::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 247, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.trail-glow-evecta-cyan:hover::before {
+  left: 100%;
+}
+
+/* Cherry Grove active click effects */
+.click-evecta-cherry:active {
+  background-color: #DD5C36 !important;
+  color: white !important;
+  transform: scale(0.95);
+  box-shadow: 0 0 15px rgba(221, 92, 54, 0.4);
+}
+
+/* Focus ring with Electric Cyan */
+.focus-evecta-cyan:focus {
+  outline: 2px solid #00FFF7;
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(0, 255, 247, 0.3);
+}
+
+/* Gradient utilities */
+.gradient-evecta-forest-golden {
+  background: linear-gradient(135deg, #327039 0%, #F0BE49 100%);
+}
+
+.gradient-evecta-forest-cyan {
+  background: linear-gradient(135deg, #327039 0%, #00FFF7 100%);
+}
+
+/* 60-30-10 Rule Implementation */
+/* 60% Neutral Colors (Silver Gray, Jet Black) */
+.neutral-60 {
+  background-color: #C6CACE; /* Silver Gray - 60% of design */
+  color: #0B0C10; /* Jet Black text */
+}
+
+/* 30% Primary Brand Colors (Forest Green, Golden Yellow) */
+.primary-30 {
+  background-color: #327039; /* Forest Green - 30% of design */
+  color: white;
+}
+
+.secondary-30 {
+  background-color: #F0BE49; /* Golden Yellow - 30% of design */
+  color: #0B0C10;
+}
+
+/* 10% Accent Colors (Cherry Grove, Electric Cyan) */
+.accent-10 {
+  background-color: #DD5C36; /* Cherry Grove - 10% of design */
+  color: white;
+}
+
+.tech-accent-10 {
+  background-color: #00FFF7; /* Electric Cyan - 10% of design */
+  color: #0B0C10;
+}
+
+/* Color balance verification classes */
+.evecta-balanced {
+  /* 60% neutral backgrounds */
+  --neutral-bg: #C6CACE;
+  --neutral-text: #0B0C10;
+  
+  /* 30% primary brand colors */
+  --primary-color: #327039;
+  --secondary-color: #F0BE49;
+  
+  /* 10% accent colors */
+  --accent-color: #DD5C36;
+  --tech-accent: #00FFF7;
 }

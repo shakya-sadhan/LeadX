@@ -1,25 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import { 
   Sparkles, 
-  Users, 
   Target, 
   Star, 
   TrendingUp, 
   BarChart3, 
   Send, 
-  Bot,
   Database,
-  Zap,
-  Mail,
-  Activity,
-  Settings,
   Plus,
+  LogOut,
+  UserCheck,
   FileText,
-  MessageSquare,
-  Calendar,
-  Eye,
-  Shield,
-  UserCheck
+  Shield
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -42,6 +36,25 @@ export function Sidebar({
   userCount = 0,
   currentUserRole = 'user'
 }) {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+
+  const handleLogout = () => {
+    setShowLogoutConfirm(true);
+  };
+
+  const confirmLogout = () => {
+    // Use the proper logout function from AuthContext
+    logout();
+    // Redirect to chat page
+    navigate('/chat');
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutConfirm(false);
+  };
+
   const leadGenItems = [
     {
       id: 'generate',
@@ -177,8 +190,7 @@ export function Sidebar({
     </div>
   );
 
-  const openRate = totalSent > 0 ? ((totalOpened / totalSent) * 100).toFixed(1) : '0';
-  const replyRate = totalSent > 0 ? ((totalReplied / totalSent) * 100).toFixed(1) : '0';
+
 
   return (
     <aside 
@@ -250,57 +262,53 @@ export function Sidebar({
             </div>
           )}
 
-          {/* Quick Stats */}
-          <div className="bg-muted/30 rounded-lg p-3">
-            <div className="flex items-center gap-2 mb-3">
-              <Activity className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm font-medium">Performance</span>
-            </div>
-            <div className="grid grid-cols-2 gap-2 mb-3">
-              <div className="text-center p-2 bg-card rounded-md border">
-                <div className="text-lg font-semibold text-primary">{totalSent}</div>
-                <div className="text-xs text-muted-foreground">Emails Sent</div>
-              </div>
-              <div className="text-center p-2 bg-card rounded-md border">
-                <div className="text-lg font-semibold text-green-600">{openRate}%</div>
-                <div className="text-xs text-muted-foreground">Open Rate</div>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="text-center p-2 bg-card rounded-md border">
-                <div className="text-lg font-semibold text-blue-600">{activeSequences}</div>
-                <div className="text-xs text-muted-foreground">Active</div>
-              </div>
-              <div className="text-center p-2 bg-card rounded-md border">
-                <div className="text-lg font-semibold text-purple-600">{replyRate}%</div>
-                <div className="text-xs text-muted-foreground">Reply Rate</div>
-              </div>
-            </div>
-          </div>
 
-          {/* Quick Access */}
+          {/* Logout Button */}
           <div className="flex gap-2">
             <Button 
               variant="outline" 
               size="sm" 
-              className="flex-1"
-              onClick={() => onViewChange('generate')}
+              className="w-full bg-red-50 hover:bg-red-100 text-red-600 border-red-200 hover:border-red-300"
+              onClick={handleLogout}
             >
-              <Zap className="h-3 w-3 mr-1" />
-              Generate
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="flex-1"
-              onClick={() => onViewChange('templates')}
-            >
-              <FileText className="h-3 w-3 mr-1" />
-              Templates
+              <LogOut className="h-3 w-3 mr-1" />
+              Logout
             </Button>
           </div>
         </div>
       </div>
+
+      {/* Logout Confirmation Dialog */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-sm w-full mx-4 shadow-xl">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                <LogOut className="h-5 w-5 text-red-600" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900">Confirm Logout</h3>
+            </div>
+            <p className="text-gray-600 mb-6">
+              Are you sure you want to logout? You will be redirected to the chat interface.
+            </p>
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={cancelLogout}
+              >
+                No, Cancel
+              </Button>
+              <Button
+                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                onClick={confirmLogout}
+              >
+                Yes, Logout
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </aside>
   );
 }

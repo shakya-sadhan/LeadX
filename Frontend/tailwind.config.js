@@ -6,6 +6,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Evecta Brand Colors
+        evecta: {
+          'forest-green': '#327039',
+          'golden-yellow': '#F0BE49',
+          'cherry-grove': '#DD5C36',
+          'electric-cyan': '#00FFF7',
+          'jet-black': '#0B0C10',
+          'silver-gray': '#C6CACE',
+        },
+        // Legacy CSS variables for compatibility
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

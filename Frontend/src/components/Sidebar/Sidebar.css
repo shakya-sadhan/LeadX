@@ -1,29 +1,32 @@
-/* Sidebar Styles - Compact Design with Sales Lead Styling */
+/* Sidebar Styles - Evecta Brand Design */
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
-  width: 120px;
-  background: #F8FAFC;
+  width: 100px;
+  background: #ffffff; /* White background */
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0;
+  justify-content: space-between;
+  padding: 15px 0;
   z-index: 1000;
   transition: width 0.3s ease;
   overflow: hidden;
-  border-right: 1px solid #E2E8F0;
+  border-right: 3px solid #327039; /* Forest Green border */
   box-sizing: border-box;
+  box-shadow: 0 0 20px rgba(50, 112, 57, 0.1);
 }
 
 /* Header - Logo */
 .sidebar-header {
-  margin-bottom: 20px !important;
-  padding: 0 12px;
+  margin-bottom: 0 !important;
+  padding: 20px 8px 0 8px;
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .logo {
@@ -31,38 +34,51 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #1E293B;
+  color: #327039; /* Forest Green */
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  color: #F0BE49; /* Golden Yellow on hover */
+  transform: scale(1.05);
 }
 
 .logo-text {
   font-size: 16px;
   font-weight: 700;
-  color: #1E293B;
+  color: #327039; /* Forest Green */
   text-align: center;
   line-height: 1.2;
   letter-spacing: 0.2px;
   white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.logo:hover .logo-text {
+  color: #F0BE49; /* Golden Yellow on hover */
+  text-shadow: 0 2px 8px rgba(240, 190, 73, 0.3);
 }
 
 /* Add Button */
 .add-section {
-  margin-bottom: 16px;
-  padding: 0 12px;
+  margin-bottom: 0;
+  padding: 0 8px;
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .add-button {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  min-height: 40px;
-  max-width: 40px;
-  max-height: 40px;
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  min-height: 35px;
+  max-width: 35px;
+  max-height: 35px;
   border-radius: 50%;
-  background: #E0E0E0;
-  border: none;
+  background: #327039; /* Forest Green */
+  border: 2px solid #327039;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,22 +86,43 @@
   transition: all 0.3s ease;
   color: white;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(50, 112, 57, 0.3);
 }
 
 .add-button:hover {
-  background: #D0D0D0;
+  background: #F0BE49; /* Golden Yellow on hover */
+  border-color: #F0BE49;
   transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(240, 190, 73, 0.4);
+}
+
+.add-button:active {
+  background: #DD5C36; /* Cherry Grove on active click */
+  border-color: #DD5C36;
+  transform: scale(0.95);
+}
+
+/* Middle Content Wrapper */
+.sidebar-middle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 30px 8px 20px 8px;
+  gap: 35px;
 }
 
 /* Navigation */
 .sidebar-nav {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 35px;
   width: 100%;
-  padding: 0 12px;
+  padding: 0;
   overflow: visible;
+  align-items: center;
 }
 
 .nav-item {
@@ -112,7 +149,12 @@
 
 .nav-item:hover:not(.active) .nav-icon {
   transform: scale(1.05);
-  color: #1F4040;
+  color: #F0BE49; /* Golden Yellow on hover */
+}
+
+.nav-item:hover:not(.active) .nav-icon-container {
+  background: rgba(240, 190, 73, 0.1);
+  box-shadow: 0 2px 8px rgba(240, 190, 73, 0.2);
 }
 
 .nav-item.active {
@@ -120,18 +162,23 @@
 }
 
 .nav-item.active .nav-icon-container {
-  background: none;
-  color: #1E293B;
+  background: rgba(50, 112, 57, 0.1);
+  box-shadow: 0 2px 8px rgba(50, 112, 57, 0.2);
 }
 
 .nav-item.active .nav-icon {
-  color: #1E293B;
+  color: #327039; /* Forest Green for active state */
   transform: scale(1.1);
 }
 
+.nav-item:active .nav-icon {
+  color: #DD5C36; /* Cherry Grove on active click */
+  transform: scale(0.95);
+}
+
 .nav-icon-container {
-  width: 24px;
-  height: 24px;
+  width: 35px;
+  height: 35px;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -144,7 +191,7 @@
 }
 
 .nav-icon {
-  color: #1E293B;
+  color: #0B0C10; /* Jet Black */
   transition: all 0.3s ease;
   transform: scale(1);
 }
@@ -152,7 +199,7 @@
 .nav-label {
   font-size: 10px !important;
   font-weight: 500;
-  color: #1E293B;
+  color: #0B0C10; /* Jet Black */
   text-align: center !important;
   white-space: nowrap;
   width: 100%;
@@ -164,6 +211,16 @@
   flex-shrink: 0;
   order: 2;
   clear: both;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover .nav-label {
+  color: #F0BE49; /* Golden Yellow on hover */
+}
+
+.nav-item.active .nav-label {
+  color: #327039; /* Forest Green for active state */
+  font-weight: 600;
 }
 
 /* Logged-in Navigation */
@@ -295,33 +352,43 @@
 
 /* Sign In Section */
 .signin-section {
-  margin-top: auto;
-  padding: 0 12px;
+  margin-top: 0;
+  padding: 0 8px 20px 8px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 15px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .signin-button {
-  background: #1E293B;
-  border: none;
+  background: #327039; /* Forest Green */
+  border: 2px solid #327039;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
+  box-shadow: 0 2px 8px rgba(50, 112, 57, 0.3);
 }
 
 .signin-button:hover {
-  background: #334155;
+  background: #F0BE49; /* Golden Yellow on hover */
+  border-color: #F0BE49;
   transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(240, 190, 73, 0.4);
+}
+
+.signin-button:active {
+  background: #DD5C36; /* Cherry Grove on active click */
+  border-color: #DD5C36;
+  transform: scale(0.95);
 }
 
 .signin-icon {
@@ -338,12 +405,17 @@
 .signin-label {
   font-size: 9px;
   font-weight: 500;
-  color: #1E293B;
+  color: #0B0C10; /* Jet Black */
   text-align: center;
   width: 100%;
   display: block;
   white-space: nowrap;
   line-height: 1.0;
+  transition: all 0.3s ease;
+}
+
+.signin-container:hover .signin-label {
+  color: #F0BE49; /* Golden Yellow on hover */
 }
 
 /* User Info Styles */
@@ -358,13 +430,23 @@
 .user-avatar {
   width: 32px;
   height: 32px;
-  background: #2D5A5A;
+  background: #327039; /* Forest Green */
+  border: 2px solid #327039;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(50, 112, 57, 0.3);
+}
+
+.user-avatar:hover {
+  background: #F0BE49; /* Golden Yellow on hover */
+  border-color: #F0BE49;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(240, 190, 73, 0.4);
 }
 
 .user-details {
@@ -377,56 +459,75 @@
 .user-name {
   font-size: 12px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #0B0C10; /* Jet Black */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: all 0.3s ease;
 }
 
 .user-email {
   font-size: 10px;
-  color: #6c757d;
+  color: #C6CACE; /* Silver Gray */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: all 0.3s ease;
+}
+
+.user-info:hover .user-name {
+  color: #F0BE49; /* Golden Yellow on hover */
+}
+
+.user-info:hover .user-email {
+  color: #327039; /* Forest Green on hover */
 }
 
 .logout-button {
   width: 32px;
   height: 32px;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background: #C6CACE; /* Silver Gray */
+  border: 2px solid #C6CACE;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
-  color: #6c757d;
+  transition: all 0.3s ease;
+  color: #0B0C10; /* Jet Black */
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(198, 202, 206, 0.3);
 }
 
 .logout-button:hover {
-  background: #e9ecef;
-  border-color: #dee2e6;
-  color: #2D5A5A;
+  background: #DD5C36; /* Cherry Grove on hover */
+  border-color: #DD5C36;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(221, 92, 54, 0.4);
+}
+
+.logout-button:active {
+  background: #327039; /* Forest Green on active click */
+  border-color: #327039;
+  transform: scale(0.95);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .sidebar {
-    width: 70px;
+    width: 80px;
   }
   
   .add-button,
   .signin-button {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
   }
   
   .nav-icon-container {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
   }
   
   .logo-text {
@@ -441,19 +542,19 @@
 
 @media (max-width: 480px) {
   .sidebar {
-    width: 60px;
+    width: 70px;
     padding: 12px 0;
   }
   
   .add-button,
   .signin-button {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
   }
   
   .nav-icon-container {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
   
   .nav-label,

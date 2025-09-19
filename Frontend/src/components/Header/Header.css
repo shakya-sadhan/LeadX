@@ -56,15 +56,15 @@
   color: #ffffff;
 }
 
-/* Floating overlay when scrolling - transparent design */
+/* Floating overlay when scrolling - Evecta design */
 .header.floating-overlay {
   position: fixed;
   top: 10px;
   left: 10px;
   right: 10px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  background: rgba(198, 202, 206, 0.9); /* Silver Gray with transparency */
+  border: 2px solid #327039; /* Forest Green border */
+  box-shadow: 0 8px 32px rgba(50, 112, 57, 0.2);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 20px;
@@ -74,36 +74,44 @@
 }
 
 .header.floating-overlay .logo {
-  color: #2c3e50;
+  color: #327039; /* Forest Green */
   text-shadow: none;
 }
 
 .header.floating-overlay .nav-link {
-  color: #2c3e50;
+  color: #0B0C10; /* Jet Black */
   text-shadow: none;
 }
 
 .header.floating-overlay .cta-button {
-  background: #2c3e50;
-  color: #ffffff;
+  background: linear-gradient(135deg, #327039 0%, #F0BE49 100%);
+  color: #0B0C10; /* Jet Black text */
+  border: 2px solid #327039;
 }
 
 .header.floating-overlay .cta-button:hover {
-  background: #34495e;
-  color: #ffffff;
+  background: linear-gradient(135deg, #F0BE49 0%, #327039 100%);
+  color: #0B0C10;
+  border-color: #F0BE49;
 }
 
 .header.floating-overlay .hamburger span {
-  background: #2c3e50;
+  background: #327039; /* Forest Green */
 }
 
 .header.floating-overlay .mobile-menu {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(198, 202, 206, 0.95); /* Silver Gray */
+  border: 2px solid #327039; /* Forest Green border */
+  box-shadow: 0 8px 32px rgba(50, 112, 57, 0.2);
 }
 
 .header.floating-overlay .mobile-nav-list a {
-  color: #2c3e50;
+  color: #0B0C10; /* Jet Black */
+}
+
+.header.floating-overlay .mobile-nav-list a:hover {
+  color: #F0BE49; /* Golden Yellow on hover */
+  background: rgba(240, 190, 73, 0.1);
 }
 
 .header-container {
@@ -123,16 +131,16 @@
   height: 45px;
 }
 
-/* Logo - Rise at Seven Style */
+/* Logo - Evecta Brand Style */
 .logo {
   display: flex;
   align-items: center;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.875rem;
-  color: #ffffff;
+  color: #327039; /* Forest Green */
   text-decoration: none;
   transition: all 0.3s ease;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   padding: 0;
   min-height: auto;
@@ -143,9 +151,10 @@
 
 .logo:hover {
   transform: scale(1.05);
-  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-  background: rgba(255, 255, 255, 0.1);
+  color: #F0BE49; /* Golden Yellow on hover */
+  text-shadow: 0 2px 15px rgba(240, 190, 73, 0.4);
+  filter: drop-shadow(0 2px 8px rgba(240, 190, 73, 0.3));
+  background: rgba(50, 112, 57, 0.1);
   backdrop-filter: blur(10px);
 }
 
@@ -183,21 +192,23 @@
 }
 
 .nav-link {
-  color: #ffffff;
+  color: #0B0C10; /* Jet Black */
   text-decoration: none;
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 500;
   transition: all 0.3s ease;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: none;
   cursor: pointer;
   letter-spacing: 0.01em;
-  padding: 2px 4px;
+  padding: 8px 12px;
+  border-radius: 6px;
 }
 
 .nav-link:hover {
-  color: #ffffff;
-  opacity: 0.8;
+  color: #F0BE49; /* Golden Yellow on hover */
+  background: rgba(240, 190, 73, 0.1);
   transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(240, 190, 73, 0.2);
 }
 
 /* Header Actions */
@@ -209,14 +220,14 @@
 }
 
 
-/* CTA Button - Rise at Seven Style */
+/* CTA Button - Evecta Brand Style */
 .cta-button {
-  background: #ffffff;
-  color: #2c3e50;
-  border: none;
+  background: linear-gradient(135deg, #327039 0%, #F0BE49 100%); /* Forest Green to Golden Yellow gradient */
+  color: #0B0C10; /* Jet Black text */
+  border: 2px solid #327039; /* Forest Green border */
   border-radius: 25px;
-  padding: 6px 16px;
-  font-weight: 500;
+  padding: 8px 20px;
+  font-weight: 600;
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -224,15 +235,22 @@
   align-items: center;
   gap: 0.6rem;
   text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(50, 112, 57, 0.3);
   text-shadow: none;
   letter-spacing: 0.02em;
 }
 
 .cta-button:hover {
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #F0BE49 0%, #327039 100%); /* Reverse gradient on hover */
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(50, 112, 57, 0.4);
+  border-color: #F0BE49; /* Golden Yellow border on hover */
+}
+
+.cta-button:active {
+  background: #DD5C36; /* Cherry Grove on active click */
+  border-color: #DD5C36;
+  transform: translateY(0);
 }
 
 .cta-arrow {
@@ -267,7 +285,7 @@
   display: block;
   height: 2px;
   width: 100%;
-  background: #ffffff;
+  background: #327039; /* Forest Green */
   border-radius: 1px;
   transition: all 0.3s ease;
   transform-origin: center;
@@ -293,20 +311,20 @@
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* Mobile Menu */
+/* Mobile Menu - Evecta Style */
 .mobile-menu {
   position: absolute;
   top: calc(100% + 10px);
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(198, 202, 206, 0.95); /* Silver Gray */
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid #327039; /* Forest Green border */
   border-radius: 16px;
   overflow: hidden;
   margin: 0 10px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(50, 112, 57, 0.2);
 }
 
 .mobile-nav-list {
@@ -322,7 +340,7 @@
 .mobile-nav-list a,
 .mobile-nav-list button {
   text-decoration: none;
-  color: #ffffff;
+  color: #0B0C10; /* Jet Black */
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -333,11 +351,22 @@
   cursor: pointer;
   width: 100%;
   text-align: left;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
 .mobile-nav-list a:hover,
 .mobile-nav-list button:hover {
-  color: #3498db;
+  color: #F0BE49; /* Golden Yellow on hover */
+  background: rgba(240, 190, 73, 0.1);
+  transform: translateX(4px);
+}
+
+.mobile-nav-list a:active,
+.mobile-nav-list button:active {
+  color: #DD5C36; /* Cherry Grove on active click */
+  background: rgba(221, 92, 54, 0.1);
 }
 
 /* Mobile menu hover for header over white content */
